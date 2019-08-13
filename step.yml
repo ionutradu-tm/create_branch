@@ -1,0 +1,22 @@
+name: create_branch
+version: 0.0.17
+summary: Deploy
+tags:
+  - branch name
+  - commit message
+  - specific format
+  - tag
+  - build number
+properties:
+  - name: REPO_USER
+    type: string
+    required: true
+  - name: REPO_NAME
+    type: string
+    required: true
+  - name: SOURCE_BRANCH
+      type: string
+      required: true
+  - name: NEW_BRANCH
+      type: string
+      required: true
