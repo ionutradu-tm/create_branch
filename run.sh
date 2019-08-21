@@ -146,7 +146,7 @@ function create_branch(){
         echo "get_build_number_commit_prefix_tag $REPO_NAME $REPO_PATH $REPO_USER $SOURCE_BRANCH"
         get_build_number_commit_prefix_tag $REPO_NAME $REPO_PATH $REPO_USER $SOURCE_BRANCH
         NEW_TAG=$NEW_BRANCH"+0"
-        if [[ -n $FORCE_BUILD_NUMBER]]; then
+        if [[ -n $FORCE_BUILD_NUMBER ]]; then
             echo "Force build number found: $FORCE_BUILD_NUMBER"
             NEW_TAG=$NEW_BRANCH"+"$FORCE_BUILD_NUMBER
         fi
