@@ -1,5 +1,5 @@
 name: create_branch
-version: 0.0.17
+version: 0.0.18
 summary: Deploy
 tags:
   - branch name
@@ -15,8 +15,14 @@ properties:
     type: string
     required: true
   - name: SOURCE_BRANCH
-      type: string
-      required: true
+    type: string
+    required: true
   - name: NEW_BRANCH
-      type: string
-      required: true
+    type: string
+    required: true
+  - name: FORCE_BUILD_NUMBER
+    type: string
+    required: false
+  - name: FORCE_CLONE
+    type: string
+    required: false

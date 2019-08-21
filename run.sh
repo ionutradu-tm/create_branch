@@ -9,10 +9,7 @@ REPO_PATH=$WERCKER_CACHE_DIR"/my_tmp/"$REPO_NAME
 SOURCE_BRANCH=$WERCKER_CREATE_BRANCH_SOURCE_BRANCH
 NEW_BRANCH=$WERCKER_CREATE_BRANCH_NEW_BRANCH
 FORCE_BUILD_NUMBER=$WERCKER_DEPLOY_FORCE_BUILD_NUMBER
-BUILD_TAG=$WERCKER_CREATE_BRANCH_BUILD_TAG
 FORCE_CLONE=$WERCKER_CREATE_BRANCH_FORCE_CLONE
-TAG_PROD=$WERCKER_CREATE_BRANCH_TAG_PROD
-TAG_PATH=$WERCKER_SOURCE_DIR"/tag"
 
 #END_VARS
 
@@ -127,7 +124,7 @@ function clone_branch(){
                 if [ $? -eq 0 ]; then
                         echo "Succesfully pushed branch $NEW_BRANCH"
                 else
-                        echo "Error during while pushing bracnh $NEW_BRANCH"
+                        echo "Error during while pushing branch $NEW_BRANCH"
                         exit 2
                 fi
         else
@@ -144,14 +141,18 @@ function create_branch(){
         local FROM_BRANCH=$4
         local NEW_BRANCH=$5
 
-        echo "clone_branch $REPO_NAME $REPO_PATH $REPO_USER $SOURCE_BRANCH $FORCE_CLONE"
-        clone_branch $REPO_NAME $REPO_PATH $REPO_USER $SOURCE_BRANCH $FORCE_CLONE
+        echo "clone_branch $REPO_NAME $REPO_PATH $SOURCE_BRANCH $NEW_BRANCH"
+        clone_branch $REPO_NAME $REPO_PATH $SOURCE_BRANCH $NEW_BRANCH
         echo "get_build_number_commit_prefix_tag $REPO_NAME $REPO_PATH $REPO_USER $SOURCE_BRANCH"
         get_build_number_commit_prefix_tag $REPO_NAME $REPO_PATH $REPO_USER $SOURCE_BRANCH
         NEW_TAG=$NEW_BRANCH"+0"
+        if [[ -n $FORCE_BUILD_NUMBER]]; then
+            echo "Force build number found: $FORCE_BUILD_NUMBER"
+            NEW_TAG=$NEW_BRANCH"+"$FORCE_BUILD_NUMBER
+        fi
         echo "NEW_TAG $NEW_TAG"
-        echo "tag_commit_sha $REPO $REPO_PATH $USER $NEW_TAG $COMMIT_WITH_LATEST_TAG"
-        tag_commit_sha $REPO_NAME $REPO_PATH $REPO_USER $NEW_TAG $LAST_COMMIT_SHA
+        echo "tag_commit_sha $REPO $REPO_PATH $USER $NEW_TAG $NEW_BRANCH $COMMIT_WITH_LATEST_TAG"
+        tag_commit_sha $REPO_NAME $REPO_PATH $REPO_USER $NEW_TAG $NEW_BRANCH $LAST_COMMIT_SHA
 
 
 }
@@ -168,11 +169,12 @@ function tag_commit_sha(){
         local REPO_PATH=$2
         local USER=$3
         local NEW_TAG=$4
-        local COMMIT_SHA=$5
+        local BRANCH=$5
+        local COMMIT_SHA=$6
 
         if [ -d "$REPO_PATH" ]; then
                 if [[ -z $COMMIT_SHA ]]; then
-                        COMMIT_SHA=$(git log -n 1 |  head -n 1 |  cut -d\  -f2)
+                        COMMIT_SHA=$(git rev-parse $BRANCH)
                 fi
                 echo "git tag $NEW_TAG $COMMIT_SHA"
                 git tag $NEW_TAG $COMMIT_SHA
