@@ -225,7 +225,25 @@ function get_build_number_commit_prefix_tag(){
 #### end functions
 
 
+if [[ -z $REPO ]];then
+    echo "Please specify a repository"
+    exit 1
+fi
 
+if [[ -z $REPO_USER ]];then
+    echo "Please specify use repository"
+    exit 1
+fi
+
+if [[ -z $SOURCE_BRANCH ]];then
+    echo "Please specify source branch"
+    exit 1
+fi
+
+if [[ -z $NEW_BRANCH ]];then
+    echo "Please specify the new branch"
+    exit 1
+fi
 
 
 #******** create branch ********
