@@ -220,7 +220,7 @@ function get_build_number_commit_prefix_tag(){
 #### end functions
 
 
-if [[ -z $REPO ]];then
+if [[ -z $REPO_NAME ]];then
     echo "Please specify a repository"
     exit 1
 fi
