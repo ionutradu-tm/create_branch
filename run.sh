@@ -211,11 +211,6 @@ function get_build_number_commit_prefix_tag(){
                 LATEST_TAG=$TAG_PREFIX"+"$LATEST_BUILD_NUMBER
                 COMMIT_WITH_LATEST_TAG=$(git rev-list -1 $LATEST_TAG)
                 echo "commit with latest tag: $COMMIT_WITH_LATEST_TAG"
-                LAST_COMMIT_SHA=$(git rev-parse $FROM_BRANCH)
-                if [[ "$LAST_COMMIT_SHA" == "$COMMIT_WITH_LATEST_TAG" ]];then
-                        echo "No need to increase the build number"
-                        INCREASE_BUILD_NUMBER="FALSE"
-                fi
         fi
 
 }
