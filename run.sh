@@ -243,8 +243,8 @@ fi
 
 #******** create branch ********
 # clone or create repository
-echo "clone_pull_repo $REPO $REPO_PATH $USER $SOURCE_BRANCH $FORCE_CLONE"
-clone_pull_repo $REPO $REPO_PATH $USER $SOURCE_BRANCH $FORCE_CLONE
-echo "create_branch $REPO $REPO_PATH $USER $SOURCE_BRANCH $NEW_BRANCH"
-create_branch $REPO $REPO_PATH $USER $SOURCE_BRANCH $NEW_BRANCH
+echo "clone_pull_repo $REPO_NAME $REPO_PATH $REPO_USER $SOURCE_BRANCH $FORCE_CLONE"
+clone_pull_repo $REPO_NAME $REPO_PATH $REPO_USER $SOURCE_BRANCH $FORCE_CLONE
+echo "create_branch $REPO_NAME $REPO_PATH $REPO_USERUSER $SOURCE_BRANCH $NEW_BRANCH"
+create_branch $REPO_NAME $REPO_PATH $REPO_USER $SOURCE_BRANCH $NEW_BRANCH
 
