@@ -151,8 +151,15 @@ function create_branch(){
             NEW_TAG=$NEW_BRANCH"+"$FORCE_BUILD_NUMBER
         fi
         echo "NEW_TAG $NEW_TAG"
-        echo "tag_commit_sha $REPO $REPO_PATH $USER $NEW_TAG $NEW_BRANCH $COMMIT_WITH_LATEST_TAG"
-        tag_commit_sha $REPO_NAME $REPO_PATH $REPO_USER $NEW_TAG $NEW_BRANCH $LAST_COMMIT_SHA
+        if [[ -n $COMMIT_WITH_LATEST_TAG ]]; then
+          echo "tag_commit_sha $REPO $REPO_PATH $USER $NEW_TAG $NEW_BRANCH $COMMIT_WITH_LATEST_TAG"
+          tag_commit_sha $REPO_NAME $REPO_PATH $REPO_USER $NEW_TAG $NEW_BRANCH $COMMIT_WITH_LATEST_TAG
+        else
+          echo "tag_commit_sha $REPO $REPO_PATH $USER $NEW_TAG $NEW_BRANCH $LAST_COMMIT_SHA"
+          tag_commit_sha $REPO_NAME $REPO_PATH $REPO_USER $NEW_TAG $NEW_BRANCH $LAST_COMMIT_SHA
+        fi
+
+
 
 
 }
