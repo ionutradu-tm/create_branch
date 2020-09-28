@@ -1,7 +1,6 @@
 name: test postman
 on:
-  create_branch:
-
+  create_branch
 
 jobs:
   create_branch:
