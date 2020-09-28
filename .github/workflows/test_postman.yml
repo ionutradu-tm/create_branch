@@ -1,6 +1,7 @@
 name: test postman
 on:
   repository_dispatch:
+    types: create-branch
 
 jobs:
   create_branch:
@@ -8,4 +9,4 @@ jobs:
     steps:
       - name:  Test env
         run: |
-          echo "Test: ${test}"
+          echo "Test: ${{ github.event.client_payload.test }}"
