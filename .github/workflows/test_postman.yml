@@ -1,6 +1,5 @@
 name: test postman
-on:
-  create_branch
+on: repository_dispatch
 
 jobs:
   create_branch:
