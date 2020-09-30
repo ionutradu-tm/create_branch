@@ -8,7 +8,7 @@
 #SOURCE_BRANCH github source branch name
 #NEW_BRANCH github new branch name
 #FORCE_BUILD_NUMBER  set a custom build-number
-# FORCE_CLONE force repository clone, default yes
+#FORCE_CLONE force repository clone, default yes
 #GIT_TOKEN GitHub token
 
 REPO_PATH="/my_tmp/"$REPO_NAME
