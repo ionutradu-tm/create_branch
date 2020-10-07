@@ -6,7 +6,16 @@ on:
 jobs:
   create_branch:
     runs-on: ubuntu-latest
+    outputs:
+      test_env: ${{ steps.create_branch.outputs.test }}
     steps:
       - name:  Test env
         run: |
-          echo "Test: ${{ github.event.client_payload.test }}"
+          echo "::set-output name=test::hello"
+  test_env:
+    runs-on: ubuntu-latest
+    needs: create-branch
+    steps:
+      - name: Print env
+        run: |
+          echo "Test: ${{needs.create_branch.outputs.test_env}}"
