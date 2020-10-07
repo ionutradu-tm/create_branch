@@ -12,7 +12,7 @@ jobs:
       - name: Test env2
         run: |
           export NEW_TAG="new tag"
-          echo "NEW_TAG=${NEW_TAG" >>$GITHUB_ENV
+          echo "NEW_TAG=${NEW_TAG}" >>$GITHUB_ENV
       - name:  Test env
         id: step1
         run: |
