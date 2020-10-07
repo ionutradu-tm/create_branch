@@ -7,9 +7,10 @@ jobs:
   create_branch:
     runs-on: ubuntu-latest
     outputs:
-      test_env: ${{ steps.create_branch.outputs.test }}
+      test_env: ${{ steps.step1.outputs.test }}
     steps:
       - name:  Test env
+        id: step1
         run: |
           echo "::set-output name=test::hello"
   test_env:
