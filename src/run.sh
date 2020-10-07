@@ -1,9 +1,6 @@
 #!/bin/bash
 
 
-echo "ENV_DOCKER=test" >> $GITHUB_ENV
-exit 0
-
 #VARS:
 
 #REPO_USER github user/oraganization
