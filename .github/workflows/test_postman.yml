@@ -12,11 +12,11 @@ jobs:
       - name: Test env2
         run: |
           export NEW_TAG="new tag"
-          echo "NEW_TAG=${NEW_TAG}" >>$GITHUB_ENV
+          echo "NEW_TAG2=${NEW_TAG}" >>$GITHUB_ENV
       - name:  Test env
         id: step1
         run: |
-          echo "::set-output name=test::${{ env.NEW_TAG }}"
+          echo "::set-output name=test::${{ env.NEW_TAG2 }}"
   test_env:
     runs-on: ubuntu-latest
     needs: create_branch
