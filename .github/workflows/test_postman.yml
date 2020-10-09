@@ -16,7 +16,7 @@ jobs:
       - name:  Test env
         id: step1
         run: |
-          echo $NEW_TAG2
+          echo ${{ env.NEW_TAG2 }}
           echo "::set-output name=test::${{ env.NEW_TAG2 }}"
 #      - name: run docker
 #        uses: docker://iradu/create-branch
