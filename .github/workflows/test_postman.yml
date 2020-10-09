@@ -30,4 +30,4 @@ jobs:
       - name: Print env
         if: ${{ needs.create_branch.outputs.test_env }} == 'true'
         run: |
-          echo "Test: ${{needs.create_branch.outputs.test_env}}"
+          echo "Test: ${{ needs.create_branch.outputs.test_env }}"
